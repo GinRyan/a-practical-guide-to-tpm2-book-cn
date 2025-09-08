@@ -20,7 +20,7 @@
 
 以上两种API都提供一些钩子接口，它们可以用来替换那些之前用软件来实现的密码学服务。这个特性可以利用TPM基于硬件的密码服务接口来抵御软件攻击。在window上，使用CAPI和PKCS接口的此类密码服务供应商都有。比如，SecurityInnovation，WaveSystems，Infineon和Lenovo都有类似的实现。这种密码服务通常是和计算机供应商绑定在一起的。值得注意的是，Infineon的CSP可以检测系统中可以使用他们服务的应用，从而让用户通过它们的服务来使用TPM。在其他的操作系统上，比如Linux，BSD，MAC OS，Solaris，PKCS#11实现了使用TPM产生公钥和随机数。并且这些实现是免费的。另外，一些公司也实现了中间件来用于构建基于TPM的密码服务，比如Charismathics。
 
-使用上述旧的接口（PKCS#11和MS CAPI）的问题是只能使用TPM的基础功能，比如说密钥生成和签名功能。所以想要利用TPM来做计算机系统健康状态认证或者米密钥迁移的软件就不能使用这些中间件。这客观上促成了TSS（TCG software stack）规范的产生。IBM开发了一个叫做TrouSerS的开源TSS实现，后来来自意大利Politecnico di Torino大学将它移植到windows平台上。当前TSS仅仅支持TPM1.2，针对TPM2.0的更新正在紧张开发中。（到2017的版本已经比较成熟了）
+使用上述旧的接口（PKCS#11和MS CAPI）的问题是只能使用TPM的基础功能，比如说密钥生成和签名功能。所以想要利用TPM来做计算机系统健康状态认证或者密钥迁移的软件就不能使用这些中间件。这客观上促成了TSS（TCG software stack）规范的产生。IBM开发了一个叫做TrouSerS的开源TSS实现，后来来自意大利Politecnico di Torino大学将它移植到windows平台上。当前TSS仅仅支持TPM1.2，针对TPM2.0的更新正在紧张开发中。（到2017的版本已经比较成熟了）
 
 相较于JAVA，TSS软件库更适合用C语言开发。因此，MIT的一些研究者开发了JAVA版本的TPM应用接口。（官网上溜了一圈，github上简单看了看，感觉好久没更新了）。
 
