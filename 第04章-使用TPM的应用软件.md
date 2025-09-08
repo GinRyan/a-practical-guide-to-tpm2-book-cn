@@ -82,23 +82,23 @@ windows 8还进一步提取了TPM中与智能卡相似的功能，并将它们�
 Windows 8和TPM2.0规范发布时还没有TPM编程标准。微软为了填补这个空缺开发了TSS.net和TSS.C++这两个开源软件库，程序员可以使用它们开发比CNG和虚拟智能卡更复杂的TPM应用软件。
 
 TSS.net和TSS.C++分别为托管代码和本地代码提供了一层简单的封装。并且它们都支持应用使用TPM设备（通过TBS）或者TPM模拟器（通过TCP/IP连接）。尽管TSS.net和TSS.C++相对来说算是底层软件库，但是它们的开发人员也不断努力让编写TPM应用程序变得简单。比方说下面就是一个通过TPM获取随机数的例子：
-```
+```cpp
 void GetRandomTbs()
 {
-// Create a TpmDevice object and attach it to the TPM. Here you
-// use the Windows TPM Base Services OS interface.
-TpmTbsDevice device;
-if (!device.Connect()) {
-cerr << "Could not connect to the TPM device";
-return;
-}
-// Create a Tpm2 object "on top" of the device.
-Tpm2 tpm(device);
-// Get 20 bytes of random data from
-std::vector<BYTE> rand = tpm.GetRandom(20);
-// Print it out.
-cout << "Random bytes: " << rand << endl;
-return;
+    // Create a TpmDevice object and attach it to the TPM. Here you
+    // use the Windows TPM Base Services OS interface.
+    TpmTbsDevice device;
+    if (!device.Connect()) {
+    cerr << "Could not connect to the TPM device";
+    return;
+    }
+    // Create a Tpm2 object "on top" of the device.
+    Tpm2 tpm(device);
+    // Get 20 bytes of random data from
+    std::vector<BYTE> rand = tpm.GetRandom(20);
+    // Print it out.
+    cout << "Random bytes: " << rand << endl;
+    return;
 }
 
 ```
